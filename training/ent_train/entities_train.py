@@ -9,7 +9,8 @@ MODEL_NAME = 'DeepPavlov/rubert-base-cased'
 LABELS = ['O', 'B-TYPE', 'I-TYPE',
           'B-FSIZE','I-FSIZE','B-SSIZE', 'I-SSIZE',
           'B-MATERIAL', 'I-MATERIAL', 'B-THICKNESS', 'I-THICKNESS', 'B-FLANGE',  'B-LENGTH',
-           'B-SECONDL', 'I-SECONDL', 'B-TYPENUM']
+           'B-SECONDL', 'I-SECONDL', 'B-TYPENUM',
+          'Ø', 'φ', 'D', 'd', '⌀']
 LABEL2ID = {label: i for i, label in enumerate(LABELS)}
 ID2LABEL = {i: label for label, i in LABEL2ID.items()}
 MAX_LEN = 128
@@ -73,7 +74,7 @@ model.resize_token_embeddings(len(tokenizer))
 
 # === Аргументы обучения ===
 training_args = TrainingArguments(
-    output_dir="voz_pos/",
+    output_dir="../voz_pos/",
     save_strategy="epoch",
     per_device_train_batch_size=8,
     num_train_epochs=5,
