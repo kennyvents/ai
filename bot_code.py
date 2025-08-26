@@ -103,6 +103,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def handle_document(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Принимает Excel, сохраняет как 'files/заявка.xlsx', запускает обработку и шлёт 'finally_results.xlsx'."""
+    print(update.message.from_user.name)
     doc = update.message.document
     if not doc:
         return

@@ -11,7 +11,7 @@ def normalize_name(name: str) -> str:
 
 def read_data(price, query):
     df_price = pd.read_excel(f'files/{price}.xlsx')
-    df_query = pd.read_excel(f'files/{query}.xlsx')
+    df_query = pd.read_excel(f'files/{query}.xlsx', usecols=[0], header=None).iloc[:, 0]
 
     return df_price, df_query
 
@@ -20,7 +20,7 @@ def normalize_data(df_price, df_query):
     price_items = df_price['item'].fillna('').astype(str).apply(normalize_name).tolist()
     price_item_cost = df_price['cost'].tolist()
 
-    query_items = df_query['item'].fillna('').astype(str).apply(normalize_name).tolist()
+    query_items = df_query.fillna('').astype(str).apply(normalize_name).tolist()
 
     return price_items, query_items, price_item_cost
 

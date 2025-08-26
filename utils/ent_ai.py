@@ -1,7 +1,7 @@
 import torch
 from transformers import BertTokenizerFast, BertForTokenClassification
 
-MODEL_DIR = "training/ent_train/voz_pos/"  # Папка с обученной моделью
+MODEL_DIR = "training/ent_train/ent_train_voz/"  # Папка с обученной моделью
 tokenizer = BertTokenizerFast.from_pretrained(MODEL_DIR)
 model = BertForTokenClassification.from_pretrained(MODEL_DIR)
 model.eval()

@@ -75,7 +75,7 @@ model.resize_token_embeddings(len(tokenizer))
 # === Аргументы обучения ===
 training_args = TrainingArguments(
     # output_dir="../voz_pos/",
-    output_dir="voz_pos/",
+    output_dir="ent_train_voz",
     save_strategy="epoch",
     per_device_train_batch_size=8,
     num_train_epochs=5,
@@ -97,5 +97,5 @@ trainer = Trainer(
 
 # === Обучение ===
 trainer.train()
-trainer.save_model("voz_pos/")
-tokenizer.save_pretrained("voz_pos/")
+trainer.save_model("ent_train_voz/")
+tokenizer.save_pretrained("ent_train_voz/")

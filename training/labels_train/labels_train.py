@@ -37,7 +37,7 @@ class CFG:
     # I/O
     excel_path: str = "voz_train.xlsx"
     sheet_with_labels: str = "Sheet1"   # лист с колонками: text1, text2, label
-    output_dir: str = "voz_pos_labels"
+    output_dir: str = "labels_train_voz"
 
     # Колонки (если в файле другие названия — поменяй тут)
     col_text1: str = "text1"

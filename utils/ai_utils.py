@@ -1,6 +1,6 @@
 from sentence_transformers import SentenceTransformer
 
-model = SentenceTransformer('training/labels_train/voz_pos_labels')
+model = SentenceTransformer('training/labels_train/labels_train_voz')
 #paraphrase-multilingual-MiniLM-L12-v2
 
 def get_embeddings(data, batch_size=32):
