@@ -1,8 +1,7 @@
 import numpy as np
 from utils.ai_utils import get_embeddings
 
-def find_top_matches(price, query, cost, N=5):
-    print(query)
+def find_top_matches(price, query, cost, number, N=5):
     top_dict = {}
 
     query_embs = get_embeddings(query)
@@ -27,7 +26,12 @@ def find_top_matches(price, query, cost, N=5):
         print(top_idx)
 
         for i in top_idx:
-            top_dict.setdefault(query[query_idx], []).append((price[i], cos_similarities[i], cost[i]))
+            query_item = query[query_idx]
+            price_item = price[i]
+            item_numbers = number[query_idx]
+            full_cost = item_numbers * cost[i]
+
+            top_dict.setdefault(query_item, []).append((price_item, cos_similarities[i], cost[i], item_numbers, full_cost))
 
         query_idx += 1
 

@@ -58,7 +58,7 @@ def process_excel() -> str:
     # 2) нормализация
     data = normalize_data(data[0], data[1])
     # 3) поиск, результат, сводка
-    result_data = find_top_matches(data[0], data[1], data[2])
+    result_data = find_top_matches(data[0], data[1], data[2], data[3])
     get_result(result_data)
     # get_top_ent, судя по сигнатуре, кладёт .xlsx в указанный каталог
     # Пример ожидаемых путей: 'files/results/emb_results' и 'files/results/finally_results'

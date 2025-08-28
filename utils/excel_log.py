@@ -3,7 +3,7 @@ from utils.ent_ai import extract_entities
 
 def get_top_ent(input_filename, output_filename, N=2):
     df = pd.read_excel(f'{input_filename}.xlsx',
-    header = None, names=(['key', 'value', 'cos_sim', 'cost']), skiprows=1)
+    header = None, names=(['key', 'value', 'cos_sim', 'cost', 'number', 'full_cost']), skiprows=1)
 
     data = {}
     current_key = None
@@ -21,6 +21,8 @@ def get_top_ent(input_filename, output_filename, N=2):
 
         value = row['value'].lower()
         cost = row['cost']
+        number = row['number']
+        full_cost = row['full_cost']
 
         value_ent = extract_entities(value)
 
@@ -42,7 +44,7 @@ def get_top_ent(input_filename, output_filename, N=2):
         # print()
 
         if condition_prod and condition_size1 and condition_size2 and condition_length:
-            data[current_key].append((value, cost))
+            data[current_key].append((value, cost, number, full_cost))
 
         # print(current_key, value)
         # print(condition_prod)
@@ -55,13 +57,13 @@ def get_top_ent(input_filename, output_filename, N=2):
     rows = []
     for key, value in data.items():
         if len(value) >= N:
-            rows.append([key, value[0][0], value[0][1]])
-            rows.append(['', value[1][0], value[1][1]])
+            rows.append([key, value[0][0], value[0][1], value[0][2], value[0][3]])
+            rows.append(['', value[1][0], value[1][1], value[1][2], value[1][3]])
         elif len(value) == 1:
-            rows.append([key, value[0][0], value[0][1]])
+            rows.append([key, value[0][0], value[0][1], value[0][2], value[0][3]])
         else:
             rows.append([key, 'не найден'])
 
-    output_df = pd.DataFrame(data=rows, columns=['запрос', 'позиция прайса', 'цена'])
+    output_df = pd.DataFrame(data=rows, columns=['запрос', 'позиция прайса', 'цена', 'количество', 'полная стоимость'])
     output_df.to_excel(f'{output_filename}.xlsx', index=False)
 
