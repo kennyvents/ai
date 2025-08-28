@@ -1,4 +1,5 @@
 from utils.ent_ai import extract_entities
+from utils.excel_log import get_top_ent
 
 def test1():
     text = 'Воздуховод-0.6-400-3000-оц.-г.г'
@@ -9,8 +10,12 @@ def test2():
     print(extract_entities(text))
 
 def test3():
-    text = 'воздуховод круглый-400-3000-оц.-0.7-г.г'
-    print(extract_entities(text))
+    text = 'Воздуховод круглый Ø100'
+    extract_entities(text)
+
+def test4():
+    get_top_ent('files/results/emb_results', 'files/results/finally_results')
 
 
-test3()
+
+test4()

@@ -35,6 +35,7 @@ def extract_entities(text: str, to_lower: bool = True):
         if tok.startswith("##"):
             continue
         result.append((tok, to_label(pid)))  # Получаем метку из id2label
+    print(result)
     return parse_result(result)
 
 def parse_result(result):

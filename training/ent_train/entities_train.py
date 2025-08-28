@@ -50,10 +50,12 @@ flang_pairs = [
     'г.т2',  'г.т3',  'г.ш2',  'г.ш3',  'г.н',  'г.крф',  'г.пф',  'г.г'
 ]
 
+diameters = ["Ø","ø","O","o","D","d","⌀","φ","Ф","ф","∅"]
+
 special_tokens = ['0.1', '0.2', '0.3', '0.4', '0.5', '0.6', '0.7', '0.8', '0.9', '1.0',
                   'воздуховод',
                   'AISI 304', 'AISI 316', 'AISI 430', 'ч.мет',
-                  *flang_pairs
+                  *flang_pairs, *diameters
                   ]
 tokenizer.add_tokens(special_tokens)
 
@@ -83,7 +85,8 @@ training_args = TrainingArguments(
     logging_steps=10,
     save_total_limit=2,
     learning_rate=5e-5,
-    save_safetensors=False
+    save_safetensors=False,
+    overwrite_output_dir=True
 )
 
 data_collator = DataCollatorForTokenClassification(tokenizer)
